@@ -1,0 +1,42 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>//needed to calculate the string
+#include <math.h>// we use this for rounding
+#define string 1000000//defining the array
+int main(void){
+    char letters[string];//making the array
+    int count = 0;//making the counts
+    int wordcount = 1;//the reason this is one is because it wont count the first word
+    int sentcount = 0;
+    printf("Text: ");
+    fgets(letters, sizeof letters, stdin);//fgets mean it will keep on reading until  the end of the string stdin mean it sending data
+    for(int i = 0; i<strlen(letters);i++){//strlen is calculating the string
+     if ((letters[i] >=  'a' && letters[i] <= 'z') || (letters[i] >= 'A' && letters[i] <= 'Z')){
+            count++;
+        }
+    }
+     for(int w = 0; w<strlen(letters);w++){
+     if(letters[w] == ' '){
+         wordcount++;
+     }
+     }
+     for (int s = 0; s<strlen(letters); s++){
+         
+     
+         if((letters[s] == '.') ||( letters[s] == '!') || (letters[s] == '?')){
+             sentcount++;
+         }
+     }
+    int grade = round(0.0588 * (100*(float)count /(float) wordcount )- 0.296 * (100*(float)sentcount / (float)wordcount) - 15.8);
+if(grade<1){
+    printf("Before Grade 1\n");
+}
+else if (grade>16){
+    printf("Grade 16+\n");
+}
+else{
+    printf("Grade %i\n", grade);
+    
+}
+}
+© 2021 GitHub, Inc.
